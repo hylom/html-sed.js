@@ -1,8 +1,9 @@
 import { HtmlSed } from '../lib/html-sed.js';
 import { streamToString, getTestFileAsStream } from './test-helpers.js';
 
-test('edit test1.html to replace <body> tag', async () => {
-  const hsed = new HtmlSed(/<body>/, '<body class="test">');
+test('apply replacing <body> tag to test1.html', async () => {
+  const hsed = new HtmlSed();
+  hsed.substitute(/<body>/, '<body class="test">');
   const stream = getTestFileAsStream('test0.html');
   const result = await streamToString(stream.pipe(hsed));
 
